@@ -3,7 +3,7 @@
 A Short Way To Optimize Your Android Device.
 
 
-With Some Module And Few Feature , I Hope Can Help Your Device Feel Smoother A Bit With Minimal Drain Battery
+With Some Feature , I Hope Can Help Your Device Feel Smoother A Bit With Minimal Drain Battery
 
 Main Feature :
 
