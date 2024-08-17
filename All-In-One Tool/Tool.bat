@@ -149,6 +149,7 @@ Tool.bat
 
 :3
 @echo off
+cls
 cd module
 extra.bat
 
