@@ -1,0 +1,14 @@
+ChangeLog 15/8/2024 :
+Add Game mode for app in Extra Settings (Android 12 above)
+Fix "Remove Save Battery setting"
+Add "Fixed Performance" in Extra Settings
+Remove Location setting
+Remove samsung2 setting
+Add START_FOREGROUND ignore for all packages
+///////////////////////////////////////////////////////////////////
+ChangeLog 17/8/2024 :
+Revamp Scripts And Shrink Down Storage
+Add Disable And Enable Gms (Google Services)
+///////////////////////////////////////////////////////////////////
+ChangeLog 20/8/2024 :
+Minor Fixbug
