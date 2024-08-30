@@ -1,5 +1,6 @@
 @echo off
-mode con: cols=135 lines=52
+setlocal
+mode con: cols=135 lines=55
 color f
 set g=[92m
 set r=[91m
@@ -20,11 +21,9 @@ set r2=[101m
 set t=[40m
 set gold=[93m
 
-
-::device
-for /f "tokens=*" %%i in ('adb -s %device_id% shell getprop ro.product.model') do set device_name=%%i
-for /f "tokens=*" %%i in ('adb -s %device_id% shell getprop ro.product.device') do set device_code=%%i
-for /f "tokens=*" %%i in ('adb -s %device_id% shell getprop ro.build.version.release') do set android_version=%%i
+for /f "tokens=*" %%i in ('adb shell getprop ro.product.model') do set device_name=%%i
+for /f "tokens=*" %%i in ('adb shell getprop ro.product.device') do set device_code=%%i
+for /f "tokens=*" %%i in ('adb shell getprop ro.build.version.release') do set android_version=%%i
 
 
 echo.
@@ -48,14 +47,21 @@ echo     "//////////////////////////////////////////////////////////////////////
 
 title BST By HungHoaBinh
 
+
 echo.
 echo.
 echo.
 echo.
 echo.
 echo.                                      
-echo                                        [Device : %r% %device_name%%w%]                 
-echo                                        [Device_Code : %y%%device_code%%w%]           
+
+
+echo.
+echo.
+echo                                   [Device: %device_name%]              
+echo                                   [Device Code: %device_code%]           
+
+          
 echo.                                      
 echo.
 echo       ####################################                   ####################################
@@ -67,23 +73,27 @@ echo.
 echo.
 echo.
 echo   +====================================================================================================================+  
-echo   +%g%Press [A] and hit ENTER to Fix Ram Usage + Battery Drain Problems%w%                                                   +  
-echo   +%g%Press [B] and hit ENTER to peform bg-dexopt-job%w%                                                                     +  
-echo   +%g%Press [C] and hit ENTER to peform fstrim (Android 9 Above)%w%                                                          +  
-echo   +%g%Press [D] and hit ENTER to peform kill-all%w%                                                                          +  
+echo   +Press [A] and hit ENTER to Fix Ram Usage + Battery Drain Problems%g%(Safe)%w%                                             +  
+echo   +Press [B] and hit ENTER to peform bg-dexopt-job%g%(Safe)%w%                                                               +  
+echo   +Press [C] and hit ENTER to peform fstrim (Android 9 Above)%g%(Safe)%w%                                                    +  
+echo   +Press [D] and hit ENTER to peform kill-all%g%(Safe)%w%                                                                    +  
 echo   +%gold%Press [E] or type exit and hit ENTER to exit%w%                                                                        +  
-echo   +%m%Press [F] and hit ENTER to peform compile apps (Android 9 Above)%w%                                                    +  
-echo   +%r%Press [G] and hit ENTER to peform Save Battery and stop App Running In Background%w%                                   +  
-echo   +%r%Press [H] and hit ENTER to peform revert Save Battery and stop App Running In Background%w%                            +  
+echo   +Press [F] and hit ENTER to peform compile apps (Android 9 Above)%m%(Moderate)%w%                                          +  
+echo   +Press [G] and hit ENTER to peform Save Battery and stop App Running In Background%r%(Critical)%w%                         +  
+echo   +Press [H] and hit ENTER to peform revert Save Battery and stop App Running In Background%r%(Critical)%w%                  +  
 echo   +--------------------------------------------------------------------------------------------------------------------+
 echo   +%d%Press [1] and hit ENTER to active ADB.exe%w%                                                                           +  
 echo   +%d%Press [2] and hit ENTER to peform "adb shell"%w%                                                                       +  
 echo   +%d%Press [3] and hit ENTER to go to another settings - Extra Settings%w%                                                  +  
-echo   +%r%Press [4] and hit ENTER to disable gms%w%                                                                              +  
+echo   +Press [4] and hit ENTER to disable gms%r%(Critical)%w%                                                                    +  
 echo   +%d%Press [5] and hit ENTER to enable gms%w%                                                                               +  
 echo   +%d%Press [6] and hit ENTER to clear logs%w%                                                                               +  
 echo   +Press [7] and hit ENTER to go back main menu                                                                        +  
 echo   +====================================================================================================================+  
+
+echo                   %b% +---+
+echo                    +[X]+ Reboot
+echo                    +---+%w%
 
 echo Choose A Option :
 
@@ -198,6 +208,13 @@ adb shell device_config delete activity_manager bg_auto_restrict_abusive_apps
 cls
 Tool.bat
 
+:X
+@echo off
+adb reboot
+pause
+cls
+tool.bat
+
 
 rem Number
 
@@ -293,4 +310,4 @@ tool.bat
 start https://source.android.com/docs/core/power/trackers
 cls
 tool.bat
-
+endlocal

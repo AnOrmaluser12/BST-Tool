@@ -20,10 +20,11 @@ echo.
 echo.
 echo.
 echo.
-
+adb shell dumpsys battery reset
 adb shell fstrim
 adb shell cmd package bg-dexopt-job
 adb shell am kill-all
+adb shell logcat -c
 echo Done
 timeout /t 2 /nobreak
 cd..

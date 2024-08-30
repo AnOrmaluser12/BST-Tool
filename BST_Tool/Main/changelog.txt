@@ -21,3 +21,16 @@ ChangeLog 22/8/2024 :
 New Menu
 Added "Quick Run" In Menu
 Minor Fixbug
+///////////////////////////////////////////////////////////////////
+ChangeLog 23/8/2024 :
+Added Reboot
+///////////////////////////////////////////////////////////////////
+ChangeLog 25/8/2024 :
+Added Disable/Enable Power Saver
+Added ADB Shell button in "Use This.bat"
+Added Disable/Enable Animation
+///////////////////////////////////////////////////////////////////
+ChangeLog 30/8/2024 :
+Added clear-logcat , dumpsys battery reset in "Quick Run"
+Fixed Device Name and Device Code didn't show up at main menu
+Show (Safe-Moderate-Critical)
