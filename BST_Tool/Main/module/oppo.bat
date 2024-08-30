@@ -1,4 +1,5 @@
 @echo off
+cls
 title Stop Oppo Apps
 rem Disable com.nearme.gamecenter appops
 adb shell cmd appops set com.nearme.gamecenter COARSE_LOCATION ignore

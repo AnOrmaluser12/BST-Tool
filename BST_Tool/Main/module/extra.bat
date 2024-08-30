@@ -1,4 +1,5 @@
 @echo off
+mode con: cols=130 lines=42
 color b
 set g=[92m
 set r=[91m
@@ -46,16 +47,20 @@ echo.
 echo.
 echo.
 echo.
-echo %g%======================================================
-echo Press [A] and ENTER to peform change thermal settings (Thermal Settings)
+echo %g%======================================================%w%
+echo Press [A] and ENTER to peform change thermal settings (Thermal Settings) %g%(Safe)%w%
 echo Press [B] and ENTER to go back setting
-echo Press [C] and ENTER to revert change thermal settings (Reset Thermal Settings)
-echo Press [D] and ENTER to tweaks battery life and ram for oppo 
-echo Press [E] and ENTER to tweaks battery life and ram for miui
-echo Press [G] and ENTER to tweaks battery life and ram for samsung
-echo Press [F] and ENTER to tweaks app for gamemode (Android 12 Above)
-echo Press [H] and ENTER to toggle Performance Mode (Android 11 Above) 
-echo ======================================================%w%
+echo Press [C] and ENTER to revert change thermal settings (Reset Thermal Settings)%g%(Safe)%w%
+echo Press [D] and ENTER to tweaks battery life and ram for oppo %g%(Safe)%w%
+echo Press [E] and ENTER to tweaks battery life and ram for miui%g%(Safe)%w%
+echo Press [G] and ENTER to tweaks battery life and ram for samsung%g%(Safe)%w%
+echo Press [F] and ENTER to tweaks app for gamemode (Android 12 Above)%m%(Moderate)%w%
+echo Press [H] and ENTER to toggle Performance Mode (Android 11 Above)%m%(Moderate)%w%
+echo %b%Press [J] and ENTER to disable animation%w%%g%(Safe)%w%
+echo %b%Press [J1] and ENTER to enable animation%w%%g%(Safe)%w%
+echo %r%Press [T] and ENTER to disable power saver %r%(Critical)%w%
+echo %r%Press [T1] and ENTER to enable power saver %r%(Critical)%w%
+echo %g%======================================================%w%
 
 set /p example=
 if %example% == a goto A
@@ -76,6 +81,14 @@ if %example% == h goto H
 if %example% == H goto H
 if %example% == h? goto H?
 if %example% == H? goto H?
+if %example% == j goto J
+if %example% == J goto J
+if %example% == j1 goto J1
+if %example% == J1 goto J1
+if %example% == t goto T
+if %example% == T goto T
+if %example% == t1 goto T1
+if %example% == T1 goto T1
 
 :A
 @echo off
@@ -116,4 +129,40 @@ fixedmode.bat
 @echo off
 cls
 start https://developer.android.com/games/optimize/adpf/fixed-performance-mode?hl=vi
+extra.bat
+:J
+@echo off
+title Disable Animation . . . .
+echo %p%disable animation%w%
+adb shell settings put global window_animation_scale 0.0
+adb shell settings put global transition_animation_scale 0.0
+adb shell settings put global animator_duration_scale 0.0
+pause
+cls
+extra.bat
+:J1
+@echo off
+title Enable Animation . . . .
+echo %y%enable animation%w%
+adb shell settings put global window_animation_scale 1.0
+adb shell settings put global transition_animation_scale 1.0
+adb shell settings put global animator_duration_scale 1.0
+pause
+cls
+extra.bat 
+:T
+@echo off
+cls
+title Disable Power Saver
+adb shell settings put global low_power 0
+pause
+cls
+extra.bat
+:T1
+@echo off
+cls
+title Enable Power Saver
+adb shell settings put global low_power 1
+pause
+cls
 extra.bat

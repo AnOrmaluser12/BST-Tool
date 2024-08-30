@@ -1,5 +1,6 @@
 @echo off
 title Stop Miui Apps
+cls
 
 ::xiaomi
 adb shell am force-stop com.xiaomi.discovery
