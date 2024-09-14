@@ -1,6 +1,6 @@
 @echo off
 setlocal
-mode con: cols=135 lines=55
+mode con: cols=135 lines=62
 color f
 set g=[92m
 set r=[91m
@@ -21,11 +21,37 @@ set r2=[101m
 set t=[40m
 set gold=[93m
 
+title Checking Device . . . . . .
+:: Check if there are devices connected to adb
+:checkagain
+adb devices | findstr /r /c:"device$" >nul
+if %errorlevel% neq 0 (
+    cls
+    echo.
+    echo.
+    echo                         %r%Warning!%w%
+    echo           %b%No Devices Found, Please Check Again%w%
+    echo                         %r%Warning!%w%
+echo.
+echo.
+    echo %g%Tips%w%: %d%Please Connect Via USB Or Wireless Connect%w%
+    title Failed To Connect Devices
+    echo.
+    echo.
+    pause > nul > nul
+    cls
+    goto checkagain
+)
+
+
+
 for /f "tokens=*" %%i in ('adb shell getprop ro.product.model') do set device_name=%%i
 for /f "tokens=*" %%i in ('adb shell getprop ro.product.device') do set device_code=%%i
 for /f "tokens=*" %%i in ('adb shell getprop ro.build.version.release') do set android_version=%%i
 
-
+echo.
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -46,44 +72,48 @@ echo     "//////////////////////////////////////////////////////////////////////
 
 
 title BST By HungHoaBinh
-
-
+for /f "tokens=2 delims=[]" %%i in ('ver') do set version=%%i
+for /f "tokens=1 delims=. " %%a in ("%version%") do set major=%%a
+for /f "tokens=2 delims=. " %%b in ("%version%") do set minor=%%b
 echo.
 echo.
-echo.
+echo                                   Windows :
+echo                                   [%d%Windows Version%w%: %minor%]
 echo.
 echo.
 echo.                                      
 
 
 echo.
-echo.
+echo                                   Android :
 echo                                   [Device: %device_name%]              
 echo                                   [Device Code: %device_code%]           
 
           
 echo.                                      
 echo.
-echo       ####################################                   ####################################
-echo       #                                  #                   #     All Changelog In TXT File    #
-echo       #       BST_Tool By HungHoaBinh    #                   #         Press %y%[R]%w% and Enter      #
-echo       #                                  #                   #         To View Changelog        #
-echo       ####################################                   ####################################
+echo                              ####################################
+echo                              #     All Changelog In TXT File    #
+echo                              #         Press %y%[R]%w% and Enter      #
+echo                              #         To View Changelog        #
+echo                              ####################################
 echo.
 echo.
 echo.
+
+
 echo   +====================================================================================================================+  
 echo   +Press [A] and hit ENTER to Fix Ram Usage + Battery Drain Problems%g%(Safe)%w%                                             +  
-echo   +Press [B] and hit ENTER to peform bg-dexopt-job%g%(Safe)%w%                                                               +  
-echo   +Press [C] and hit ENTER to peform fstrim (Android 9 Above)%g%(Safe)%w%                                                    +  
-echo   +Press [D] and hit ENTER to peform kill-all%g%(Safe)%w%                                                                    +  
+echo   +Press [B] and hit ENTER to perform bg-dexopt-job%g%(Safe)%w%                                                              +  
+echo   +Press [C] and hit ENTER to perform fstrim (Android 9 Above)%g%(Safe)%w%                                                   +  
+echo   +Press [D] and hit ENTER to perform kill-all%g%(Safe)%w%                                                                   +  
 echo   +%gold%Press [E] or type exit and hit ENTER to exit%w%                                                                        +  
-echo   +Press [F] and hit ENTER to peform compile apps (Android 9 Above)%m%(Moderate)%w%                                          +  
-echo   +Press [G] and hit ENTER to peform Save Battery and stop App Running In Background%r%(Critical)%w%                         +  
-echo   +Press [H] and hit ENTER to peform revert Save Battery and stop App Running In Background%r%(Critical)%w%                  +  
-echo   +--------------------------------------------------------------------------------------------------------------------+
+echo   +Press [F] and hit ENTER to perform compile apps (Android 9 Above)%m%(Moderate)%w%                                         +  
+echo   +Press [G] and hit ENTER to perform Save Battery and stop App Running In Background%r%(Critical)%w%                        +  
+echo   +Press [H] and hit ENTER to perform revert Save Battery and stop App Running In Background%r%(Critical)%w%                 +  
+echo   +--------------------------------------------------------------------------------------------------------------------+        
 echo   +%d%Press [1] and hit ENTER to active ADB.exe%w%                                                                           +  
-echo   +%d%Press [2] and hit ENTER to peform "adb shell"%w%                                                                       +  
+echo   +%d%Press [2] and hit ENTER to perform "adb shell"%w%                                                                      +  
 echo   +%d%Press [3] and hit ENTER to go to another settings - Extra Settings%w%                                                  +  
 echo   +Press [4] and hit ENTER to disable gms%r%(Critical)%w%                                                                    +  
 echo   +%d%Press [5] and hit ENTER to enable gms%w%                                                                               +  
@@ -91,15 +121,15 @@ echo   +%d%Press [6] and hit ENTER to clear logs%w%                             
 echo   +Press [7] and hit ENTER to go back main menu                                                                        +  
 echo   +====================================================================================================================+  
 
-echo                   %b% +---+
-echo                    +[X]+ Reboot
-echo                    +---+%w%
-
-echo Choose A Option :
+echo                          %b% +---+
+echo                           +[X]+ Reboot
+echo                           +---+%w%
 
 
 
-set /p example=
+
+
+set /p example="Choose An Option -> %b%"
 if %example% == 0 goto start
 if %example% == 1 goto 1
 if %example% == 2 goto 2
@@ -154,44 +184,111 @@ if %example% == D? goto D?
 if %example% == d? goto D?
 if %example% == notepad goto notepad
 if %example% == cls goto cls
+if %example% == clnp goto clnp
+
+
+
 
 Rem Keyboard
 
 :R
 @echo off
-changelog.txt
 cls
+color f
+title ChangeLog
+echo.
+echo.
+mode con: cols=135 lines=55
+echo ChangeLog 15/8/2024 :
+echo %g%Add Game mode for app in Extra Settings%w% (Android 12 above)
+echo %red%Fix "Remove Save Battery setting"%w%
+echo %g%Add "Fixed Performance" in Extra Settings%w%
+echo %r%Remove Location setting
+echo Remove samsung2 setting%w%
+echo %y%Add START_FOREGROUND ignore for all packages%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 17/8/2024 :
+echo %red%Revamp Scripts And Shrink Down Storage
+echo Add Disable And Enable Gms%w% (Google Services)
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 20/8/2024 :
+echo %red%Minor Fixbug%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 21/8/2024 :
+echo %red%Minor Fixbug%w%
+echo %g%Change GUI%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 22/8/2024 :
+echo %g%New Menu
+echo Added "Quick Run" In Menu%w%
+echo %red%Minor Fixbug%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 23/8/2024 :
+echo %g%Added Reboot%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 25/8/2024 :
+echo %g%Added Disable/Enable Power Saver
+echo Added ADB Shell button in "Use This.bat"
+echo Added Disable/Enable Animation%w%
+echo ///////////////////////////////////////////////////////////////////
+echo ChangeLog 30/8/2024 :
+echo %g%Added clear-logcat , dumpsys battery reset in "Quick Run"%w%
+echo %red%Fixed Device Name and Device Code didn't show up at main menu%w%
+echo %gold%Show%w% (Safe-Moderate-Critical)
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 31/8/2024 :
+echo %red%Fixed Minor Bug%w%
+echo %g%Changelog built-in this scripts%w%
+echo %gold%Show Windows Version In Main Menu%w%
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 1/9/2024 :
+echo %gold%Added Check Adb In "Main Menu"
+echo %red%Fixed Bug From Quick Run%w% (mistyping adb shell fstrim instead adb shell sm fstrim)
+echo %g%Quick.bat will built-in Intro Menu%w% 
+echo %g%Show Progress In "Quick Run"%w% 
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 3/9/2024 :
+echo Release.
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 5/9/2024 :
+echo %g%Added Disable Send Error%w%
+echo %red%Fixed Minor bug%w%
+echo ///////////////////////////////////////////////////////////////////
+echo %red%Fixed Minor bug%w%
+echo %red%Fixed typo %w%
+echo.
+pause > nul
 tool.bat
 
 :A
 @echo off
-cd module
+echo . . . .
 fixram.bat
 
 
 :B
 @echo off
-cd module
+echo . . . .
 optimizer.bat
 
 :C
 @echo off
-cd module
+echo . . . .
 fstim.bat
 
 :D
 @echo off
-cd module
+echo . . . .
 killall.bat
 
 :E
 @echo off
-cd module
+echo . . . .
 notify.bat
 
 :F
 @echo off
-cd module
+echo . . . .
 compile.bat
 
 :G
@@ -211,7 +308,7 @@ Tool.bat
 :X
 @echo off
 adb reboot
-pause
+pause > nul
 cls
 tool.bat
 
@@ -238,13 +335,13 @@ Tool.bat
 :3
 @echo off
 cls
-cd module
+echo . . . .
 extra.bat
 
 :4
 @echo off
 adb shell pm disable-user --user 0 com.google.android.gms
-settings put global zen_mode 4
+adb shell settings put global zen_mode 4
 cls
 tool.bat
 
@@ -252,7 +349,7 @@ tool.bat
 @echo off
 cls
 adb shell pm enable com.google.android.gms
-settings put global zen_mode 0
+adb shell settings put global zen_mode 0
 tool.bat
 
 :6
