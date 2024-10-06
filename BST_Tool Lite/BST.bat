@@ -33,6 +33,9 @@ echo                                  "                              "
 echo                                  [                                ]
 echo                                 -[ Thank You For Using My Scripts ]-
 echo                                  [      Made By HungHoaBinh       ]
+echo.
+echo.
+echo                                     Press Any Button To Continue
 pause > nul
 
 
@@ -40,6 +43,7 @@ pause > nul
 
 
 :menu
+mode con: cols=145 lines=35
 cls
 echo.
 echo.
@@ -148,7 +152,7 @@ echo                                               -[Extreme Setting]-
 echo                          -[%r%Waring, This Scrips May Make Your Device Won't Work Properly%w%]-
 echo.
 echo                                            %r% You Have Been Warned! %w%    
-
+echo.
 echo                               %r%[1]%w% Disable Google Service
 echo                               %r%[2]%w% Enable Google Service
 echo                               %r%[3]%w% Toggle Thermal Services
@@ -308,7 +312,7 @@ goto Extreme
 
 :Moderate
 @echo off
-mode con: cols=145 lines=35
+mode con: cols=120 lines=32
 title Moderate Menu
 cls
 echo                                  %r%"    ____ ___________ __________  ____  __ "
@@ -326,7 +330,9 @@ echo.
 echo                               %m%[1]%w% Compile Apps 
 echo                               %m%[2]%w% Toggle Performance Mode
 echo                               %m%[3]%w% Disable/Enable Power Saver
-echo                               %g%[4]%w% Back
+echo                               %m%[4]%w% Disable/Enable Motion Engine + WifiRcm
+echo                               %m%[5]%w% Disable/Enable Auto Wifi
+echo                               %g%[6]%w% Back
 
 
 
@@ -335,7 +341,9 @@ set /p kb="Choose An Option: "
 if %kb% == 1 goto compile
 if %kb% == 2 goto toggle1
 if %kb% == 3 goto toggle2
-if %kb% == 4 goto menu
+if %kb% == 4 goto motion
+if %kb% == 5 goto autowifi
+if %kb% == 6 goto menu
 
 
 rem compile
@@ -402,21 +410,94 @@ goto Moderate
 
 
 
+rem motion engine
+:motion
+@echo off
+cls
+timeout /t 1 /nobreak > nul
+title Toggle Motion Engine + Wifircm
+echo.
+echo.
+echo Press [%m%A%w%] To Disable Motion Engine + Wifircm
+echo Press [%m%B%w%] To Enable Motion Engine + Wifircm
+echo Press [%g%C%w%] To Go Back Menu
+echo.
+set /p kb="Choose An Option: "
+
+if %kb% == A goto disablemotion
+if %kb% == a goto disablemotion
+if %kb% == b goto enablemotion
+if %kb% == B goto enablemotion
+if %kb% == c goto Moderate
+if %kb% == C goto Moderate
+
+:disablemotion
+@echo off
+cls
+title Disable Motion Engine + wifircm
+adb shell settings put global network_recommendations_enabled 0
+adb shell settings put system master_motion 0
+adb shell settings put system motion_engine 0
+adb shell settings put system air_motion_engine 0
+adb shell settings put system air_motion_wake_up 0
+echo Press Any Button To Go Back
+pause > nul
+goto Moderate
+
+:enablemotion
+@echo off
+cls
+title Enable Motion Engine + Wifircm
+adb shell settings remove system master_motion 
+adb shell settings remove system motion_engine 
+adb shell settings remove system air_motion_engine 
+adb shell settings remove system air_motion_wake_up 
+adb shell settings remove global network_recommendations_enabled 
+echo Press Any Button To Go Back
+pause > nul
+goto Moderate
 
 
 
+:autowifi
+@echo off
+cls
+title Toggle Auto wifi settings
+echo.
+echo.
 
+echo Press [%m%A%w%] To Disable autowifi
+echo Press [%m%B%w%] To Enable autowifi
+echo Press [%g%C%w%] To Go Back Menu
 
+set /p kb="Choose An Option: "
 
+if %kb% == a goto atwft
+if %kb% == A goto atwft
+if %kb% == b goto atwff
+if %kb% == B goto atwff
+if %kb% == C goto Moderate
+if %kb% == c goto Moderate
 
+:atwft
+@echo off
+cls
+title Disable auto wifi
+adb shell settings put global auto_wifi 0
+adb shell settings put global wifi_scan_always_enabled 0
+echo Press Any Button To Go Back
+pause > nul
+goto Moderate
 
-
-
-
-
-
-
-
+:atwff
+@echo off
+cls
+title Enable auto wifi
+adb shell settings put global auto_wifi 1
+adb shell settings put global wifi_scan_always_enabled 1
+echo Press Any Button To Go Back
+pause > nul
+goto Moderate
 
 
 
@@ -451,7 +532,7 @@ goto Moderate
 
 
 :safemenu
-mode con: cols=145 lines=35
+mode con: cols=120 lines=35
 title Safe Menu
 @echo off
 cls
@@ -472,6 +553,7 @@ echo                               %g%[3]%w% Bg-Dexopt-Job
 echo                               %g%[4]%w% Fstrim
 echo                               %g%[5]%w% Clear Log Cat
 echo                               %g%[6]%w% Back
+echo.
 set /p kb="Choose An Option: "
 if %kb% == 1 goto kill
 if %kb% == 2 goto disableanimation
