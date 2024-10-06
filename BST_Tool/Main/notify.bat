@@ -18,7 +18,7 @@ echo.
 echo.
 echo.
 echo You will be exit with time out
-timeout /t 4 /nobreak
+timeout /t 4 /nobreak > nul
 adb kill-server
 cls
 exit

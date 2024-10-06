@@ -24,46 +24,41 @@ echo.
 echo.
 echo.
 echo.
-echo    "///___//__/__//______//____////____//////___/___////___//____///__/__/";
-echo    "/////_]|//|//||//////||////\///////|////|///|///|/////_]|////\/|//|//|";
-echo    "////[_/|//|//||//////||//D//)|//o//|////|/_///_/|////[_/|//_//||//|//|";
-echo    "|////_]|_///_||_|//|_||//////|/////|////|//\_///||////_]|//|//||//|//|";
-echo    "|///[_/|/////|//|//|//|////\/|//_//|////|///|///||///[_/|//|//||//://|";
-echo    "|/////||//|//|//|//|//|//.//\|//|//|////|///|///||/////||//|//||/////|";
-echo    "|_____||__|__|//|__|//|__|\_||__|__|////|___|___||_____||__|__|/\__,_|";
-echo    "//////////////////////////////////////////////////////////////////////";
+echo                      "///___//__/__//______//____////____//////___/___////___//____///__/__/";
+echo                      "/////_]|//|//||//////||////\///////|////|///|///|/////_]|////\/|//|//|";
+echo                      "////[_/|//|//||//////||//D//)|//o//|////|/_///_/|////[_/|//_//||//|//|";
+echo                      "|////_]|_///_||_|//|_||//////|/////|////|//\_///||////_]|//|//||//|//|";
+echo                      "|///[_/|/////|//|//|//|////\/|//_//|////|///|///||///[_/|//|//||//://|";
+echo                      "|/////||//|//|//|//|//|//.//\|//|//|////|///|///||/////||//|//||/////|";
+echo                      "|_____||__|__|//|__|//|__|\_||__|__|////|___|___||_____||__|__|/\__,_|";
+echo                      "//////////////////////////////////////////////////////////////////////";
 
 title Extra Settings
 echo.
 echo.
 echo.
 echo.
-echo      %r% ####################################
-echo       #                                  #
-echo       #       BST By HungHoaBinh         #
-echo       #         Extra Settings           #
-echo       ####################################%w%
+echo                                    %r% ####################################
+echo                                     #                                  #
+echo                                     #       BST By HungHoaBinh         #
+echo                                     #         Extra Settings           #
+echo                                     ####################################%w%
 echo.
 echo.
 echo.
 echo.
 echo.
-echo %g%======================================================%w%
-echo Press [A] and ENTER to perform change thermal settings (Thermal Settings) %g%(Safe)%w%
-echo Press [B] and ENTER to go back setting
-echo Press [C] and ENTER to revert change thermal settings (Reset Thermal Settings)%g%(Safe)%w%
-echo Press [D] and ENTER to tweaks battery life and ram for oppo %g%(Safe)%w%
-echo Press [E] and ENTER to tweaks battery life and ram for miui%g%(Safe)%w%
-echo Press [G] and ENTER to tweaks battery life and ram for samsung%g%(Safe)%w%
-echo Press [F] and ENTER to tweaks app for gamemode (Android 12 Above)%m%(Moderate)%w%
-echo Press [H] and ENTER to toggle Performance Mode (Android 11 Above)%m%(Moderate)%w%
-echo Press [J] and ENTER to disable animation%w%%g%(Safe)%w%
-echo Press [J1] and ENTER to enable animation%w%%g%(Safe)%w%
-echo Press [T] and ENTER to disable power saver %r%(Critical)%w%
-echo Press [T1] and ENTER to enable power saver %r%(Critical)%w%
-echo Press [K] and ENTER to disable send error report %m%(Moderate)%w%
-echo Press [K1] and ENTER to enable send error report %m%(Moderate)%w%
-echo %g%======================================================%w%
+echo      +=================================================================================================+
+echo      : [A]  Change thermal settings (%r%Critical%w%)        : [B]  Back to settings                          :
+echo      : [C]  Revert thermal settings (%r%Critical%w%)        : [D]  Tweaks battery, RAM for OPPO (%r%Critical%w%)   :
+echo      : [E]  Tweaks battery, RAM for MIUI (%r%Critical%w%)   : [G]  Tweaks battery, RAM for Samsung (%r%Critical%w%):
+echo      : [F]  Tweaks app for gamemode (%m%Moderate%w%)        : [H]  Toggle Performance Mode  (%m%Moderate%w%)       :
+echo      : [J]  Disable animation (%g%Safe%w%)                  : [J1] Enable animation (%g%Safe%w%)                   :
+echo      : [T]  Disable power saver (%r%Critical%w%)            : [T1] Enable power saver (%r%Critical%w%)             :
+echo      : [K]  Disable send error report (%m%Moderate%w%)      : [K1] Enable send error report (%m%Moderate%w%)       :
+echo      : [L]  Disable auto-wifi (%m%Moderate%w%)              : [L1] Enable auto-wifi (%m%Moderate%w%)               :
+echo      +=================================================================================================+
+echo.
 
 set /p example="%b%Choose an Option: %w%" 
 if %example% == a goto A
@@ -96,6 +91,11 @@ if %example% == K goto K
 if %example% == k goto K
 if %example% == k1 goto K1
 if %example% == K1 goto K1
+if %example% == l goto autowifioff
+if %example% == L goto autowifioff
+if %example% == l1 goto autowifion
+if %example% == L1 goto autowifion
+
 
 :A
 @echo off
@@ -140,21 +140,23 @@ extra.bat
 :J
 @echo off
 title Disable Animation . . . .
+cls
 echo %p%disable animation%w%
 adb shell settings put global window_animation_scale 0.0
 adb shell settings put global transition_animation_scale 0.0
 adb shell settings put global animator_duration_scale 0.0
-pause
+pause > nul
 cls
 extra.bat
 :J1
 @echo off
 title Enable Animation . . . .
+cls
 echo %y%enable animation%w%
 adb shell settings put global window_animation_scale 1.0
 adb shell settings put global transition_animation_scale 1.0
 adb shell settings put global animator_duration_scale 1.0
-pause
+pause > nul
 cls
 extra.bat 
 :T
@@ -180,6 +182,7 @@ title Disable Send Error
 cls
 adb shell settings put global send_action_app_error 0
 adb shell settings put global enable_diagnostic_data 0
+adb shell settings put system send_security_reports 0
 
 pause
 cls
@@ -191,7 +194,29 @@ title Enable Send Error
 cls
 adb shell settings put global send_action_app_error 1
 adb shell settings put global enable_diagnostic_data 1
+adb shell settings put system send_security_reports 1
 
 pause
 cls
+extra.bat
+
+
+:autowifioff
+@echo off
+cls
+title Disable Auto Wifi
+adb shell settings put global auto_wifi 0
+adb shell settings put global wifi_scan_always_enabled 0
+
+pause > nul
+extra.bat
+
+:autowifion
+@echo off
+cls
+title Enable Auto Wifi
+adb shell settings put global auto_wifi 1
+adb shell settings put global wifi_scan_always_enabled 1
+
+pause > nul
 extra.bat

@@ -72,7 +72,7 @@ if "%MODE_CHOICE%"=="1" (
 )
 
 :: Execute the adb command to change the game mode
-adb -s %device_id% shell cmd game mode %GAME_MODE% %PACKAGE_NAME%
+adb shell cmd game mode %GAME_MODE% %PACKAGE_NAME%
 
 :: Notify the user of the change
 echo %PACKAGE_NAME% has been set to %GAME_MODE% mode.

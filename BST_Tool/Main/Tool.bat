@@ -1,6 +1,9 @@
 @echo off
-setlocal
-mode con: cols=135 lines=62
+:menu
+
+
+cls
+mode con: cols=135 lines=52
 color f
 set g=[92m
 set r=[91m
@@ -21,6 +24,7 @@ set r2=[101m
 set t=[40m
 set gold=[93m
 
+setlocal
 title Checking Device . . . . . .
 :: Check if there are devices connected to adb
 :checkagain
@@ -35,96 +39,77 @@ if %errorlevel% neq 0 (
 echo.
 echo.
     echo %g%Tips%w%: %d%Please Connect Via USB Or Wireless Connect%w%
+    echo.
+    echo Press Any Button To Check Again
     title Failed To Connect Devices
     echo.
     echo.
-    pause > nul > nul
+    pause > nul
     cls
     goto checkagain
 )
 
 
 
-for /f "tokens=*" %%i in ('adb shell getprop ro.product.model') do set device_name=%%i
-for /f "tokens=*" %%i in ('adb shell getprop ro.product.device') do set device_code=%%i
-for /f "tokens=*" %%i in ('adb shell getprop ro.build.version.release') do set android_version=%%i
 
 echo.
 echo.
 echo.
-echo.
-echo.
-echo.
-echo.
-echo.
 
-echo     "%y%//$$///////$$////////////$$//////////////////$$///////$$//////////////////////////////%w%";
-echo     "|/$$$/////$$$//////////|__/////////////////|/$$$/////$$$//////////////////////////////";
-echo     "%y%|/$$$$///$$$$///$$$$$$///$$//$$$$$$$///////|/$$$$///$$$$///$$$$$$///$$$$$$$///$$////$$%w%";
-echo     "|/$$/$$/$$/$$/|____//$$|/$$|/$$__//$$//////|/$$/$$/$$/$$//$$__//$$|/$$__//$$|/$$//|/$$";
-echo     "%y%|/$$//$$$|/$$///$$$$$$$|/$$|/$$//\/$$//////|/$$//$$$|/$$|/$$$$$$$$|/$$//\/$$|/$$//|/$$%w%";
-echo     "|/$$\//$/|/$$//$$__//$$|/$$|/$$//|/$$//////|/$$\//$/|/$$|/$$_____/|/$$//|/$$|/$$//|/$$";
-echo     "%y%|/$$/\///|/$$|//$$$$$$$|/$$|/$$//|/$$//////|/$$/\///|/$$|//$$$$$$$|/$$//|/$$|//$$$$$$/%w%";
-echo     "|__//////|__//\_______/|__/|__///|__///////|__//////|__//\_______/|__///|__//\______//";
-echo     "//////////////////////////////////////////////////////////////////////////////////////";
-echo     "//////////////////////////////////////////////////////////////////////////////////////";
-echo     "//////////////////////////////////////////////////////////////////////////////////////";
+echo                    "%y%//$$///////$$////////////$$//////////////////$$///////$$//////////////////////////////%w%";
+echo                    "|/$$$/////$$$//////////|__/////////////////|/$$$/////$$$//////////////////////////////";
+echo                    "%y%|/$$$$///$$$$///$$$$$$///$$//$$$$$$$///////|/$$$$///$$$$///$$$$$$///$$$$$$$///$$////$$%w%";
+echo                    "|/$$/$$/$$/$$/|____//$$|/$$|/$$__//$$//////|/$$/$$/$$/$$//$$__//$$|/$$__//$$|/$$//|/$$";
+echo                    "%y%|/$$//$$$|/$$///$$$$$$$|/$$|/$$//\/$$//////|/$$//$$$|/$$|/$$$$$$$$|/$$//\/$$|/$$//|/$$%w%";
+echo                    "|/$$\//$/|/$$//$$__//$$|/$$|/$$//|/$$//////|/$$\//$/|/$$|/$$_____/|/$$//|/$$|/$$//|/$$";
+echo                    "%y%|/$$/\///|/$$|//$$$$$$$|/$$|/$$//|/$$//////|/$$/\///|/$$|//$$$$$$$|/$$//|/$$|//$$$$$$/%w%";
+echo                    "|__//////|__//\_______/|__/|__///|__///////|__//////|__//\_______/|__///|__//\______//";
+echo                    "//////////////////////////////////////////////////////////////////////////////////////";
+echo                    "//////////////////////////////////////////////////////////////////////////////////////";
+echo                    "//////////////////////////////////////////////////////////////////////////////////////";
 
 
 title BST By HungHoaBinh
-for /f "tokens=2 delims=[]" %%i in ('ver') do set version=%%i
-for /f "tokens=1 delims=. " %%a in ("%version%") do set major=%%a
-for /f "tokens=2 delims=. " %%b in ("%version%") do set minor=%%b
 echo.
 echo.
-echo                                   Windows :
-echo                                   [%d%Windows Version%w%: %minor%]
 echo.
 echo.
 echo.                                      
 
 
 echo.
-echo                                   Android :
-echo                                   [Device: %device_name%]              
-echo                                   [Device Code: %device_code%]           
-
           
+
+echo                                              %b%Scripts%w% Developed By %g%HungHoabinh%w%
+echo                                   %r%Waring%w%: This Scripts May Change How Your Devices Work
+echo                                %r%%red% So i don't take any responsibility if your device is damaged %w%
 echo.                                      
 echo.
-echo                              ####################################
-echo                              #     All Changelog In TXT File    #
-echo                              #         Press %y%[R]%w% and Enter      #
-echo                              #         To View Changelog        #
-echo                              ####################################
+echo                                         ####################################
+echo                                         #         Press %y%[R]%w% and Enter      #                         
+echo                                         #                                  #
+echo                                         #         To View Changelog        #
+echo                                         ####################################
 echo.
 echo.
 echo.
 
+echo                      +==============================================================================+
+echo                      : [N/A] Active ADB.exe             : [A]  Fix RAM + Battery (%r%Critical%w%)         :
+echo                      : [2]  Perform "adb shell"         : [B]  bg-dexopt-job (%g%%g%Safe%w%%w%)                 :
+echo                      : [3]  Extra Settings              : [C]  fstrim (Android 9+) (%g%Safe%w%)           :
+echo                      : [4]  Disable GMS (%r%Critical%w%)      : [D]  Kill-all (%g%Safe%w%)                      :
+echo                      : [5]  Enable GMS                  : [E]  Exit                                 :
+echo                      : [6]  Clear logs                  : [F]  Compile apps (Android 9+) (%m%Moderate%w%) :
+echo                      : [7]  Back to main menu           : [G]  Save Battery (%r%Critical%w%)              :
+echo                      :                                  : [H]  Revert Save Battery                  :
+echo                      :                                  : [V]  Disable/Enable Motion+WifiRcm (?)    :
+echo                      +==============================================================================+
+                             
 
-echo   +====================================================================================================================+  
-echo   +Press [A] and hit ENTER to Fix Ram Usage + Battery Drain Problems%g%(Safe)%w%                                             +  
-echo   +Press [B] and hit ENTER to perform bg-dexopt-job%g%(Safe)%w%                                                              +  
-echo   +Press [C] and hit ENTER to perform fstrim (Android 9 Above)%g%(Safe)%w%                                                   +  
-echo   +Press [D] and hit ENTER to perform kill-all%g%(Safe)%w%                                                                   +  
-echo   +%gold%Press [E] or type exit and hit ENTER to exit%w%                                                                        +  
-echo   +Press [F] and hit ENTER to perform compile apps (Android 9 Above)%m%(Moderate)%w%                                         +  
-echo   +Press [G] and hit ENTER to perform Save Battery and stop App Running In Background%r%(Critical)%w%                        +  
-echo   +Press [H] and hit ENTER to perform revert Save Battery and stop App Running In Background%r%(Critical)%w%                 +  
-echo   +--------------------------------------------------------------------------------------------------------------------+        
-echo   +%d%Press [1] and hit ENTER to active ADB.exe%w%                                                                           +  
-echo   +%d%Press [2] and hit ENTER to perform "adb shell"%w%                                                                      +  
-echo   +%d%Press [3] and hit ENTER to go to another settings - Extra Settings%w%                                                  +  
-echo   +Press [4] and hit ENTER to disable gms%r%(Critical)%w%                                                                    +  
-echo   +%d%Press [5] and hit ENTER to enable gms%w%                                                                               +  
-echo   +%d%Press [6] and hit ENTER to clear logs%w%                                                                               +  
-echo   +Press [7] and hit ENTER to go back main menu                                                                        +  
-echo   +====================================================================================================================+  
-
-echo                          %b% +---+
-echo                           +[X]+ Reboot
-echo                           +---+%w%
-
+echo                                                      %b% +---+
+echo                                                       +[X]+ Reboot
+echo                                                       +---+%w%
 
 
 
@@ -185,6 +170,8 @@ if %example% == d? goto D?
 if %example% == notepad goto notepad
 if %example% == cls goto cls
 if %example% == clnp goto clnp
+if %example% == V goto V
+if %example% == v goto V
 
 
 
@@ -205,11 +192,11 @@ echo %red%Fix "Remove Save Battery setting"%w%
 echo %g%Add "Fixed Performance" in Extra Settings%w%
 echo %r%Remove Location setting
 echo Remove samsung2 setting%w%
-echo %y%Add START_FOREGROUND ignore for all packages%w%
+echo %g%Added START_FOREGROUND ignore for all packages%w%
 echo ///////////////////////////////////////////////////////////////////
 echo ChangeLog 17/8/2024 :
 echo %red%Revamp Scripts And Shrink Down Storage
-echo Add Disable And Enable Gms%w% (Google Services)
+echo %g%Add Disable And Enable Gms%w% (Google Services)
 echo ///////////////////////////////////////////////////////////////////
 echo ChangeLog 20/8/2024 :
 echo %red%Minor Fixbug%w%
@@ -240,6 +227,10 @@ echo Change Log 31/8/2024 :
 echo %red%Fixed Minor Bug%w%
 echo %g%Changelog built-in this scripts%w%
 echo %gold%Show Windows Version In Main Menu%w%
+echo.
+echo Press Any Button To Go To Next Page
+pause > nul
+cls
 echo ///////////////////////////////////////////////////////////////////
 echo Change Log 1/9/2024 :
 echo %gold%Added Check Adb In "Main Menu"
@@ -257,12 +248,43 @@ echo ///////////////////////////////////////////////////////////////////
 echo %red%Fixed Minor bug%w%
 echo %red%Fixed typo %w%
 echo.
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 27/9/2024 :
+echo %g%Added Disable/Enable auto-wifi%w%
+echo %g%Added Disable/Enable Send Security Reports%w%
+echo %b%Change GUI%w%
+echo %red%Alot Of Setting From %g%Safe%w% To %r%Critical%w%
+echo.
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 29/9/2024 :
+echo %y%Show A Little Prompt Before Enter Any %r%Critical Settings%y% In Main Menu%w% 
+echo ///////////////////////////////////////////////////////////////////
+echo Change Log 30/9/2024 :
+echo %g%Added Disable/Enable Motion + Wifircm%w%
+echo %gold%New GUI%w%
+echo %red%Removed Show Windows Version, Removed Show Android Version%w% 
+echo Press Any Button To Go Back Main Menu
 pause > nul
+echo 
 tool.bat
 
 :A
 @echo off
-echo . . . .
+cls
+echo %y%Keep in mind that if you continue by press any button that will make notification is slow/delay
+echo.
+echo.
+timeout /t 4 /nobreak > nul
+echo %r%Press [A] If You Want To Fix Ram + Battery
+echo %g%Press [B] If You Want To Go Back%w%
+set /p ctn="%red%Please Choose An Option%w%: "
+
+if %ctn% == a goto fx
+if %ctn% == A goto fx
+if %ctn% == b goto menu
+if %ctn% == B goto menu
+
+:fx
 fixram.bat
 
 
@@ -293,15 +315,42 @@ compile.bat
 
 :G
 @echo off
+cls
+echo %r%Only Use This If You Know What Are You Doing.
+echo.
+echo.
+timeout /t 2 /nobreak > nul
+echo %r%Press [A] To Continue
+echo %g%Press [B] If You Want To Go Back%w%
+echo.
+set /p ctn="%red%Please Choose An Option%w%: "
+if %ctn% == a goto btro
+if %ctn% == A goto btro
+if %ctn% == b goto menu
+if %ctn% == B goto menu
+
+
+
+
+:btro
 adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1
 adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1
+
+
 cls
+echo %r% Extreme Save Battery Mode : %w%On
+echo.
+echo.
+echo Press Any Button To Go Back Main Menu
+pause > nul 
 Tool.bat
 
 :H
 @echo off
 adb shell device_config delete activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 
 adb shell device_config delete activity_manager bg_auto_restrict_abusive_apps 
+
+
 cls
 Tool.bat
 
@@ -315,17 +364,7 @@ tool.bat
 
 rem Number
 
-:1
-@echo off
-cls
-echo.
-echo.
-echo.
-echo.
-echo Connect. . . . . .
-adb devices
-timeout /t 3 /nobreak
-Tool.bat
+
 
 :2
 @echo off
@@ -340,9 +379,26 @@ extra.bat
 
 :4
 @echo off
+cls
+echo %r%Only Use This If You Know What Are You Doing.
+echo.
+echo.
+timeout /t 2 /nobreak > nul
+echo %r%Press [A] To Continue
+echo %g%Press [B] If You Want To Go Back%w%
+echo.
+set /p ctn="%red%Please Choose An Option%w%: "
+if %ctn% == a goto gmsd
+if %ctn% == A goto gmsd
+if %ctn% == b goto menu
+if %ctn% == B goto menu
+
+
+:gmsd
 adb shell pm disable-user --user 0 com.google.android.gms
 adb shell settings put global zen_mode 4
-cls
+echo %w%Press Any Button To Go Back Main Menu.
+pause > nul
 tool.bat
 
 :5
@@ -376,35 +432,51 @@ notepad tool.bat
 cls
 tool.bat
 
-rem Documents
+rem motion+wifircm
 
-:A?
+:V
 @echo off
-start https://github.com/Aatrick/-NO-ROOT-battery-optimization
+mode 60,18
+color e
 cls
-tool.bat
+echo.
+echo.
 
-:B?
-@echo off
-start https://xdaforums.com/t/adb-dexpot-fix-battery-drain.4453539/
-cls
-tool.bat
+echo [1] Disable
+echo [2] Enable
+echo [3] Go Back
 
-:C?
-@echo off
-start https://xdaforums.com/t/mfstrim-a-real-foss-fstrim-utility-for-android-no-root-necessary.4258765/
-cls
-tool.bat
+rem .
+set /p kb="Choose An Option: "
+if %kb% == 1 goto mrcme
+if %kb% == 2 goto mrcmd
+if %kb% == 3 goto menu
 
-:D?
+:mrcme
 @echo off
-start https://stackoverflow.com/questions/31079853/how-do-i-kill-all-active-tasks-apps-using-adb
 cls
-tool.bat
+title Disable Motion + Network Recommendation
+timeout /t 2 /nobreak > nul
+adb shell settings put global network_recommendations_enabled 0
+adb shell settings put system master_motion 0
+adb shell settings put system motion_engine 0
+adb shell settings put system air_motion_engine 0
+adb shell settings put system air_motion_wake_up 0
+pause
+goto menu
 
-:G?
+
+:mrcmd
 @echo off
-start https://source.android.com/docs/core/power/trackers
 cls
-tool.bat
+title Enable Motion + Network Reommendation
+timeout /t 2 /nobreak > nul
+adb shell settings remove system master_motion 
+adb shell settings remove system motion_engine 
+adb shell settings remove system air_motion_engine 
+adb shell settings remove system air_motion_wake_up 
+adb shell settings remove global network_recommendations_enabled 
+pause
+goto menu
+
 endlocal

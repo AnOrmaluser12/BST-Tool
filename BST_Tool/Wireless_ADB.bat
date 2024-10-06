@@ -1,4 +1,6 @@
 @echo off
+cls
+color c
 echo Only Use This If Your Devices Pair Before.
 
 title Warning !!

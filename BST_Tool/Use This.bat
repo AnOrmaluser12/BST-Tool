@@ -1,4 +1,5 @@
 @echo off
+title Loading . . . . . . . .
 cd Main
 cls
 set g=[92m
@@ -19,7 +20,7 @@ set g2=[102m
 set r2=[101m
 set t=[40m
 set gold=[93m
-
+timeout /t 2 /nobreak > nul
 title 
 mode con: cols=135 lines=39
 :setup
@@ -53,6 +54,8 @@ echo                              +-----------------------------------------+
 echo.
 echo.
 echo.
+echo.
+echo Press Any Button.
 echo.
 
 

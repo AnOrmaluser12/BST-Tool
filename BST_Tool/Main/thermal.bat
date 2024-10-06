@@ -13,7 +13,7 @@ setlocal
 where adb.exe >nul 2>nul
 if %errorlevel% neq 0 (
     echo adb.exe not found.
-    pause
+    pause > nul
     cls
     extra.bat
     exit /b
@@ -23,7 +23,7 @@ if %errorlevel% neq 0 (
 adb devices | findstr /r /c:"device$" >nul
 if %errorlevel% neq 0 (
     echo No devices connect.
-    pause
+    pause > nul
     cls
     extra.bat
     exit /b
@@ -55,14 +55,14 @@ echo.
 set /p number="Enter a number between 1 and 6: "
 if "%number%" lss "1" (
     echo Invalid number. Exiting script.
-    pause
+    pause > nul
     cls
     extra.bat
     exit /b
 )
 if "%number%" gtr "6" (
     echo Invalid number. Exiting script.
-    pause
+    pause > nul
     cls
     extra.bat
     exit /b
@@ -70,7 +70,7 @@ if "%number%" gtr "6" (
 for %%i in (%number%) do (
     if "%%i" neq "%number%" (
         echo Invalid input. Exiting script.
-        pause
+        pause > nul
         cls
         extra.bat
         exit /b
@@ -80,7 +80,7 @@ for %%i in (%number%) do (
 :: Execute the adb command
 adb shell cmd thermalservice override-status %number%
 
-pause
+pause > nul
 cls
 extra.bat
 endlocal
