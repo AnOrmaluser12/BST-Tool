@@ -11,24 +11,16 @@ A Short Way To Optimize Your Android Device.
 
 With Some Feature , I Hope Can Help Your Device Feel Smoother A Bit With Minimal Drain Battery
 
-Intro Menu
+Normal Scripts :
 
-![image](https://github.com/user-attachments/assets/c93515e9-9ce1-4c8c-89e1-0e4615647f5f)
-
-![image](https://github.com/user-attachments/assets/1e82b36a-f95f-462e-a6c7-6811d21dd83b)
-
-
-First Menu :
-
-![image](https://github.com/user-attachments/assets/5ea39562-c5de-4bca-ab69-5937a296015e)
+![image](https://github.com/user-attachments/assets/35e64920-fbbc-43a6-bec0-08617d35cc9e)
+![image](https://github.com/user-attachments/assets/49b298c2-93bd-4142-bd9c-c8e84b5ea8f2)
 
 
+Lite Scripts :
+![image](https://github.com/user-attachments/assets/f79503b3-ad20-47e4-b6f7-e25354533ade)
 
 
-Extra Settings :
-
-
-![image](https://github.com/user-attachments/assets/0867f53d-f07f-47e8-9c6a-98f7de8304c7)
 
 
 
