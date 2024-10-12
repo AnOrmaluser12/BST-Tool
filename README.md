@@ -2,9 +2,12 @@
 #BST_TOOL
 
 Requirements :
+
 Supported ART Compiler
+
 Android 10 - 13
 
+No Need To Root
 
 
 
