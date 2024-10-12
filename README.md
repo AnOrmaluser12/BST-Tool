@@ -1,13 +1,15 @@
 # Tweaks-For-Android
 #BST_TOOL
 
-Requirements :
 
-Supported ART Compiler
-
-Android 10 - 13
-
-No Need To Root
+| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
+|Requirements :        |
+| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
+|Supported ART Compiler|
+| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
+|Android 10 - 13ㅤㅤㅤㅤ|
+|ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ  |
+|No Need To Rootㅤㅤㅤㅤ|
 
 
 
