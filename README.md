@@ -1,6 +1,12 @@
 # Tweaks-For-Android
 #BST_TOOL
 
+Requirements :
+Supported ART Compiler
+Android 10 - 13
+
+
+
 
 
 Basic Simple Tweak Tool
