@@ -1,18 +1,12 @@
-# Tweaks-For-Android
-#BST_TOOL
 
+Requirements :
 
-| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
-|Requirements :        |
-| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
-|Supported ART Compiler|
-| ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ |
-|Android 10 - 13ㅤㅤㅤㅤ|
-|ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ  |
-|No Need To Rootㅤㅤㅤㅤ|
+-Android 10 -> 13
 
+-Supported ART Compiler
 
-
+------------------------------------------------------------------
+#Basic-Simple-Tweak
 
 Basic Simple Tweak Tool
 
