@@ -8,7 +8,7 @@ echo         ####################################
 title +Fstrim+ 
 
 color 9
-setlocal
+
 
 :: Kiem tra su ton tai cua adb.exe
 where adb.exe >nul 2>nul
@@ -51,4 +51,4 @@ adb shell sm fstrim
 pause
 cls
 Tool.bat
-endlocal
+

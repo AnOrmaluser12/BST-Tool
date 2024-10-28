@@ -7,7 +7,7 @@ echo       #       BST By HungHoaBinh         #
 echo       #                                  #
 echo       ####################################
 color 9
-setlocal
+
 
 :: Check if adb.exe exists in the current directory
 where adb.exe >nul 2>nul
@@ -80,4 +80,3 @@ echo Restart to get apply changed
 pause
 cls
 extra.bat
-endlocal

@@ -1,5 +1,24 @@
 @echo off
 cls
+echo Only Doing This If You Know What Are You Doing.
+echo Press 1 To Process
+echo Press 2 To Go Back
+echo.
+set /p yn="Choose An Option: "
+if %yn% == 1 goto 1
+if %yn% == 2 goto 2
+
+
+
+
+:2
+@echo off
+tool.bat
+
+
+:1
+@echo off
+cls
 title Stop Oppo Apps
 rem Disable com.nearme.gamecenter appops
 adb shell cmd appops set com.nearme.gamecenter COARSE_LOCATION ignore

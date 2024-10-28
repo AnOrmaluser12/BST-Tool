@@ -1,4 +1,5 @@
 @echo off
+:menu
 cls
 mode con: cols=130 lines=42
 color b
@@ -57,6 +58,7 @@ echo      : [J]  Disable animation (%g%Safe%w%)                  : [J1] Enable a
 echo      : [T]  Disable power saver (%r%Critical%w%)            : [T1] Enable power saver (%r%Critical%w%)             :
 echo      : [K]  Disable send error report (%m%Moderate%w%)      : [K1] Enable send error report (%m%Moderate%w%)       :
 echo      : [L]  Disable auto-wifi (%m%Moderate%w%)              : [L1] Enable auto-wifi (%m%Moderate%w%)               :
+echo      : [R]  Toggle Package Verifier (%r%Critical%w%)        :                                                :
 echo      +=================================================================================================+
 echo.
 
@@ -95,7 +97,8 @@ if %example% == l goto autowifioff
 if %example% == L goto autowifioff
 if %example% == l1 goto autowifion
 if %example% == L1 goto autowifion
-
+if %example% == r goto R
+if %example% == R goto R
 
 :A
 @echo off
@@ -145,6 +148,7 @@ echo %p%disable animation%w%
 adb shell settings put global window_animation_scale 0.0
 adb shell settings put global transition_animation_scale 0.0
 adb shell settings put global animator_duration_scale 0.0
+echo Press Any Button To Go Back
 pause > nul
 cls
 extra.bat
@@ -156,6 +160,7 @@ echo %y%enable animation%w%
 adb shell settings put global window_animation_scale 1.0
 adb shell settings put global transition_animation_scale 1.0
 adb shell settings put global animator_duration_scale 1.0
+echo Press Any Button To Go Back
 pause > nul
 cls
 extra.bat 
@@ -180,9 +185,10 @@ extra.bat
 @echo off
 title Disable Send Error
 cls
-adb shell settings put global send_action_app_error 0
-adb shell settings put global enable_diagnostic_data 0
-adb shell settings put system send_security_reports 0
+adb shell settings put secure send_action_app_error 0 default
+adb shell settings put global send_action_app_error 0 default
+adb shell settings put global enable_diagnostic_data 0 default
+adb shell settings put system send_security_reports 0 default
 
 pause
 cls
@@ -192,9 +198,10 @@ extra.bat
 @echo off
 title Enable Send Error
 cls
-adb shell settings put global send_action_app_error 1
-adb shell settings put global enable_diagnostic_data 1
-adb shell settings put system send_security_reports 1
+adb shell settings put secure send_action_app_error 1 default
+adb shell settings put global send_action_app_error 1 default
+adb shell settings put global enable_diagnostic_data 1 default
+adb shell settings put system send_security_reports 1 default
 
 pause
 cls
@@ -205,9 +212,9 @@ extra.bat
 @echo off
 cls
 title Disable Auto Wifi
-adb shell settings put global auto_wifi 0
-adb shell settings put global wifi_scan_always_enabled 0
-
+adb shell settings put global auto_wifi 0 default
+adb shell settings put global wifi_scan_always_enabled 0 default
+echo Press Any Button To Go Back
 pause > nul
 extra.bat
 
@@ -215,8 +222,50 @@ extra.bat
 @echo off
 cls
 title Enable Auto Wifi
-adb shell settings put global auto_wifi 1
-adb shell settings put global wifi_scan_always_enabled 1
-
+adb shell settings put global auto_wifi 1 default
+adb shell settings put global wifi_scan_always_enabled 1 default
+echo Press Any Button To Go Back
 pause > nul
 extra.bat
+
+
+:R
+@echo off
+title Toggle Package Verifier
+cls
+echo %r%Only Use This If You Know What Are You Doing%w%.
+echo Press Any Button To Go Next Page
+pause > nul
+cls
+echo [%r%1%w%] To Disable Package Verifier
+echo [%r%2%w%] To Enable Package Verfier
+echo [%g%3%w%] Go Back
+
+set /p kb="Choose an option: "
+if %kb% == 1 goto dsbpv
+if %kb% == 2 goto enbpv
+if %kb% == 3 goto menu
+
+
+
+:dsbpv
+@echo off
+title Disable package_verifier_enable
+adb shell settings put global package_verifier_enable 0
+echo Done
+echo.
+echo Press Any Button To Go Back
+pause > nul
+goto menu
+
+
+:enbpv
+@echo off
+title Enable package_verifier_enable
+adb shell settings put global package_verifier_enable 1
+echo Done
+echo.
+echo Press Any Button To Go Back
+pause > nul
+goto menu
+

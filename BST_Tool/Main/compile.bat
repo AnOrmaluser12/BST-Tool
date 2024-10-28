@@ -7,7 +7,7 @@ echo         #                                  #
 echo         ####################################
 title Compile App With Speed Profile
 color e
-setlocal
+
 
 :: Kiem tra su ton tai cua adb.exe
 where adb.exe >nul 2>nul
@@ -54,4 +54,4 @@ adb shell cmd package compile -m speed -f %package%
 pause
 cls
 tool.bat
-endlocal
+

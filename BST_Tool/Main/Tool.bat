@@ -3,7 +3,7 @@
 
 
 cls
-mode con: cols=135 lines=52
+mode con: cols=125 lines=45
 color f
 set g=[92m
 set r=[91m
@@ -24,7 +24,7 @@ set r2=[101m
 set t=[40m
 set gold=[93m
 
-setlocal
+
 title Checking Device . . . . . .
 :: Check if there are devices connected to adb
 :checkagain
@@ -40,11 +40,11 @@ echo.
 echo.
     echo %g%Tips%w%: %d%Please Connect Via USB Or Wireless Connect%w%
     echo.
-    echo Press Any Button To Check Again
+    echo Check Again . . . .
     title Failed To Connect Devices
     echo.
     echo.
-    pause > nul
+    timeout /t 2 /nobreak > nul
     cls
     goto checkagain
 )
@@ -85,11 +85,6 @@ echo                                   %r%Waring%w%: This Scripts May Change How
 echo                                %r%%red% So i don't take any responsibility if your device is damaged %w%
 echo.                                      
 echo.
-echo                                         ####################################
-echo                                         #         Press %y%[R]%w% and Enter      #                         
-echo                                         #                                  #
-echo                                         #         To View Changelog        #
-echo                                         ####################################
 echo.
 echo.
 echo.
@@ -101,9 +96,9 @@ echo                      : [3]  Extra Settings              : [C]  fstrim (Andr
 echo                      : [4]  Disable GMS (%r%Critical%w%)      : [D]  Kill-all (%g%Safe%w%)                      :
 echo                      : [5]  Enable GMS                  : [E]  Exit                                 :
 echo                      : [6]  Clear logs                  : [F]  Compile apps (Android 9+) (%m%Moderate%w%) :
-echo                      : [7]  Back to main menu           : [G]  Save Battery (%r%Critical%w%)              :
-echo                      :                                  : [H]  Revert Save Battery                  :
-echo                      :                                  : [V]  Disable/Enable Motion+WifiRcm (?)    :
+echo                      : [7]  Check Settings              : [G]  Save Battery (%r%Critical%w%)              :
+echo                      : [8]  Toggle ZRAM (%r%Critical%w%)      : [H]  Revert Save Battery                  :
+echo                      : [9]  Go back to menu             : [V]  Disable/Enable Motion+WifiRcm (?)    :
 echo                      +==============================================================================+
                              
 
@@ -114,7 +109,7 @@ echo                                                       +---+%w%
 
 
 
-set /p example="Choose An Option -> %b%"
+set /p example="%b%Choose An Option%w% -> "
 if %example% == 0 goto start
 if %example% == 1 goto 1
 if %example% == 2 goto 2
@@ -178,100 +173,12 @@ if %example% == v goto V
 
 Rem Keyboard
 
-:R
-@echo off
-cls
-color f
-title ChangeLog
-echo.
-echo.
-mode con: cols=135 lines=55
-echo ChangeLog 15/8/2024 :
-echo %g%Add Game mode for app in Extra Settings%w% (Android 12 above)
-echo %red%Fix "Remove Save Battery setting"%w%
-echo %g%Add "Fixed Performance" in Extra Settings%w%
-echo %r%Remove Location setting
-echo Remove samsung2 setting%w%
-echo %g%Added START_FOREGROUND ignore for all packages%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 17/8/2024 :
-echo %red%Revamp Scripts And Shrink Down Storage
-echo %g%Add Disable And Enable Gms%w% (Google Services)
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 20/8/2024 :
-echo %red%Minor Fixbug%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 21/8/2024 :
-echo %red%Minor Fixbug%w%
-echo %g%Change GUI%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 22/8/2024 :
-echo %g%New Menu
-echo Added "Quick Run" In Menu%w%
-echo %red%Minor Fixbug%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 23/8/2024 :
-echo %g%Added Reboot%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 25/8/2024 :
-echo %g%Added Disable/Enable Power Saver
-echo Added ADB Shell button in "Use This.bat"
-echo Added Disable/Enable Animation%w%
-echo ///////////////////////////////////////////////////////////////////
-echo ChangeLog 30/8/2024 :
-echo %g%Added clear-logcat , dumpsys battery reset in "Quick Run"%w%
-echo %red%Fixed Device Name and Device Code didn't show up at main menu%w%
-echo %gold%Show%w% (Safe-Moderate-Critical)
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 31/8/2024 :
-echo %red%Fixed Minor Bug%w%
-echo %g%Changelog built-in this scripts%w%
-echo %gold%Show Windows Version In Main Menu%w%
-echo.
-echo Press Any Button To Go To Next Page
-pause > nul
-cls
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 1/9/2024 :
-echo %gold%Added Check Adb In "Main Menu"
-echo %red%Fixed Bug From Quick Run%w% (mistyping adb shell fstrim instead adb shell sm fstrim)
-echo %g%Quick.bat will built-in Intro Menu%w% 
-echo %g%Show Progress In "Quick Run"%w% 
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 3/9/2024 :
-echo Release.
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 5/9/2024 :
-echo %g%Added Disable Send Error%w%
-echo %red%Fixed Minor bug%w%
-echo ///////////////////////////////////////////////////////////////////
-echo %red%Fixed Minor bug%w%
-echo %red%Fixed typo %w%
-echo.
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 27/9/2024 :
-echo %g%Added Disable/Enable auto-wifi%w%
-echo %g%Added Disable/Enable Send Security Reports%w%
-echo %b%Change GUI%w%
-echo %red%Alot Of Setting From %g%Safe%w% To %r%Critical%w%
-echo.
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 29/9/2024 :
-echo %y%Show A Little Prompt Before Enter Any %r%Critical Settings%y% In Main Menu%w% 
-echo ///////////////////////////////////////////////////////////////////
-echo Change Log 30/9/2024 :
-echo %g%Added Disable/Enable Motion + Wifircm%w%
-echo %gold%New GUI%w%
-echo %red%Removed Show Windows Version, Removed Show Android Version%w% 
-echo Press Any Button To Go Back Main Menu
-pause > nul
-echo 
-tool.bat
+
 
 :A
 @echo off
 cls
-echo %y%Keep in mind that if you continue by press any button that will make notification is slow/delay
+echo %r%Only Use This If You Know What Are You Doing%w%.
 echo.
 echo.
 timeout /t 4 /nobreak > nul
@@ -316,7 +223,7 @@ compile.bat
 :G
 @echo off
 cls
-echo %r%Only Use This If You Know What Are You Doing.
+echo %r%Only Use This If You Know What Are You Doing%w%.
 echo.
 echo.
 timeout /t 2 /nobreak > nul
@@ -333,8 +240,8 @@ if %ctn% == B goto menu
 
 
 :btro
-adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1
-adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1
+adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1 default
+adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1 default
 
 
 cls
@@ -357,7 +264,6 @@ Tool.bat
 :X
 @echo off
 adb reboot
-pause > nul
 cls
 tool.bat
 
@@ -368,6 +274,7 @@ rem Number
 
 :2
 @echo off
+cls
 adb shell
 Tool.bat
 
@@ -380,7 +287,7 @@ extra.bat
 :4
 @echo off
 cls
-echo %r%Only Use This If You Know What Are You Doing.
+echo %r%Only Use This If You Know What Are You Doing%w%.
 echo.
 echo.
 timeout /t 2 /nobreak > nul
@@ -415,6 +322,52 @@ cls
 tool.bat
 
 :7
+@echo off
+checking.bat
+
+:8
+@echo off
+title Toggle ZRAM
+cls
+echo %r%Only Use This If You Know What Are You Doing%w%.
+echo Press Any Button To Go Next Page
+pause > nul
+cls
+echo [%r%1%w%] To Disable ZRAM
+echo [%r%2%w%] To Enable ZRAM
+echo [%g%3%w%] Go Back
+
+set /p kb="Choose an option: "
+if %kb% == 1 goto dsbzr
+if %kb% == 2 goto enbzr
+if %kb% == 3 goto menu
+
+
+
+:dsbzr
+@echo off
+cls
+title Disable ZRAM
+adb shell settings put global zram_enabled 0 default
+adb shell settings put global zram 0 default 
+echo Press Any Button To Go Back
+pause > nul
+goto menu
+
+:enbzr
+@echo off
+cls
+title Enable ZRAM
+adb shell settings put global zram_enabled 1 default
+adb shell settings put global zram 1 default 
+echo Press Any Button To Go Back
+pause > nul
+goto menu
+
+
+
+
+:9
 @echo off
 cd..
 "Use This.bat"
@@ -457,11 +410,11 @@ if %kb% == 3 goto menu
 cls
 title Disable Motion + Network Recommendation
 timeout /t 2 /nobreak > nul
-adb shell settings put global network_recommendations_enabled 0
-adb shell settings put system master_motion 0
-adb shell settings put system motion_engine 0
-adb shell settings put system air_motion_engine 0
-adb shell settings put system air_motion_wake_up 0
+adb shell settings put global network_recommendations_enabled 0 default
+adb shell settings put system master_motion 0 default
+adb shell settings put system motion_engine 0 default
+adb shell settings put system air_motion_engine 0 default
+adb shell settings put system air_motion_wake_up 0 default
 pause
 goto menu
 
@@ -479,4 +432,3 @@ adb shell settings remove global network_recommendations_enabled
 pause
 goto menu
 
-endlocal

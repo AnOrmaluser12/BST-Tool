@@ -7,7 +7,7 @@ echo                       #       BST By HungHoaBinh         #
 echo                       #                                  #
 echo                       ####################################
 color 9
-setlocal
+
 
 :: Check if adb.exe exists in the current directory
 where adb.exe >nul 2>nul
@@ -80,7 +80,9 @@ for %%i in (%number%) do (
 :: Execute the adb command
 adb shell cmd thermalservice override-status %number%
 
+
+echo Press Any Button To Go Back
 pause > nul
 cls
 extra.bat
-endlocal
+

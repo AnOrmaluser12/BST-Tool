@@ -7,7 +7,7 @@ echo                       #                                  #
 echo                       ####################################
 title Optimize Overall Device!
 color e
-setlocal
+
 
 :: Kiem tra su ton tai cua adb.exe
 where adb.exe >nul 2>nul
@@ -47,10 +47,23 @@ echo Device: %device_name%
 echo Device ID: %device_code%           
 echo Android Version: %android_version% 
 echo =====================================
-echo Press any button to run this scripts.
+echo Press [1] To Optimize
+echo Press [2] To Go back
 echo.
 echo.
-pause
+set /p kb="Choose An Option: "
+
+if %kb% == 1 goto optimize
+if %kb% == 2 goto back
+
+
+:back
+@echo off
+tool.bat
+
+
+:optimize
+@echo off
 cls
 echo                       ####################################
 echo                       #                                  #
@@ -62,9 +75,10 @@ echo.
 echo.
 echo                       Scripts Is Running , Please Waiting.
 adb shell cmd package bg-dexopt-job
-pause
+echo Press Any Button To Go Back
+pause > nul
 cls
 Tool.bat
-endlocal
+
 
 

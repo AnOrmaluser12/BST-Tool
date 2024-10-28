@@ -10,7 +10,7 @@ echo.
 echo.
 title Performance Mode Toggle
 color 8
-setlocal
+
 
 ::check
 where adb.exe >nul 2>nul
@@ -77,4 +77,4 @@ echo Now performance mode has been set to %MODE%.
 pause
 cls
 extra.bat
-endlocal
+
