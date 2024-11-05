@@ -68,8 +68,7 @@ echo.
 echo                                [1] Safe Settings 
 echo                                [2] Moderate Settings
 echo                                [3] Extreme Settings
-echo                                [4] All Information - Tips
-echo                                [5] Exit Scripts 
+echo                                [4] Exit Scripts 
 echo.
 echo.
 
@@ -78,8 +77,7 @@ set /p keyboard="Choose An Option: "
 if %keyboard% == 1 goto safemenu
 if %keyboard% == 2 goto Moderate
 if %keyboard% == 3 goto Extreme
-if %keyboard% == 4 goto Information
-if %keyboard% == 5 goto exit
+if %keyboard% == 4 goto exit
 
 rem info
 :Information
@@ -158,7 +156,8 @@ echo                               %r%[2]%w% Enable Google Service
 echo                               %r%[3]%w% Toggle Thermal Services
 echo                               %r%[4]%w% Enable Extreme Save Battery (Don't Use This If You Don't Know What Will Affect To Your Devices)
 echo                               %r%[5]%w% Disable Extreme Save Battery
-echo                               %g%[6]%w% Back
+echo                               %r%[6]%w% Toggle ZRAM
+echo                               %g%[7]%w% Back
 
 
 
@@ -169,7 +168,8 @@ if %kb% == 2 goto egs
 if %kb% == 3 goto thermal
 if %kb% == 4 goto extbtr
 if %kb% == 5 goto dsbtr
-if %kb% == 6 goto menu
+if %kb% == 6 goto zram
+if %kb% == 7 goto menu
 
 
 
@@ -248,11 +248,42 @@ cls
 goto Extreme
 
 
+rem zram
+:zram
+@echo off
+
+cls
+title Toggle ZRAM
+echo [%r%1%w%] Disable ZRAM
+echo [%r%2%w%] Enable ZRAM
+echo [%g%3%w%] Go Back
+
+set /p kb="Choose an option: "
+
+if %kb% == 1 goto zramoff
+if %kb% == 2 goto zramon
+if %kb% == 3 goto Extreme
 
 
+:zramoff
+@echo off
+cls
+title Disable ZRAM
+adb shell settings put global zram_enabled 0 default
+adb shell settings put global zram 0 default
+echo Press Any Button To Go Back
+pause > nul
+goto Extreme
 
-
-
+:zramon
+@echo off
+cls
+title Enable ZRAM
+adb shell settings put global zram_enabled 1 default
+adb shell settings put global zram 1 true
+echo Press Any Button To Go Back
+pause > nul
+goto Extreme
 
 
 
