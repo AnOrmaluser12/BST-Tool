@@ -32,7 +32,7 @@ Safe Settings :
 Moderate-Critical Settings :
 
 
--Longer Battery Life Than Safe (Your Notification May Delay)
+-Longer Battery Life Than Safe Settings (Your Notification May Delay)
 
 -Boost FPS (++)
 
