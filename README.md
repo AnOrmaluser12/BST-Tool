@@ -43,7 +43,7 @@ Moderate-Critical Settings :
 
 **<!>Warnning<!> <!>Warnning<!> <!>Warnning<!> <!>Warnning<!>**
 
-This Script Have A Safe Settings And Critical Settings That May Damage Your Device If You Don't Know What Are You Doing
+This Script Have Few Safe Settings And Critical Settings That May Damage Your Device If You Don't Know What Are You Doing
 
 You Have Been Warned!!
 
