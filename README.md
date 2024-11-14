@@ -18,25 +18,30 @@ Welcome To My Project , Im Doing This Script For Non-Root Users That Don't Want 
 
 Here Is The List That What You Will Gain After Using My Script :
 
-Safe Settings :
-
--Run Smoother
-
 -Longer Battery Life
 
--Boost FPS (Maybe It's Not That Much But Why Not?)
+-Fps Boost (Maybe it not that much but why not ?)
 
-++++++++++++++
+-Bring A New Fresh To Your Device With A lot Of Settings To Change
+
+-Give You A Best Experience With My Script
+
+-Root and Non-Rooted Can Use This Script !
+
+------------------------------------------------------------------
+
+**FAQ**
+
+Q: What Does This Script Do And What Will Affect My Device ?
+
+A: This script will optimize your device based on the settings you choose, and some settings will slow down your notifications so be aware of it
 
 
-Moderate-Critical Settings :
+Q: Will There A Setting That Will Damage My Device If I Choose Wrong Setting?
 
+A: Nope , I just tested all of it but be careful , only change setting if you know what are you doing
 
--Longer Battery Life Than Safe Settings (Your Notification May Delay)
-
--Boost FPS (++)
-
-
+-
 
 
 ------------------------------------------------------------------
