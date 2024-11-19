@@ -64,21 +64,18 @@ echo                     "| |_) | (___    | |     \ \  /\  / /__  _ __| | __| |"
 echo                     "|  _ < \___ \   | |      \ \/  \/ / _ \| '__| |/ _` |"%w%
 echo                     "| |_) |____) |  | |       \  /\  / (_) | |  | | (_| |"
 echo                     "|____/|_____/   |_|        \/  \/ \___/|_|  |_|\__,_|"
-
 echo.
 echo.
 echo.
-echo                           %r%Gaming%w%         %gold%Battery%w%     %g%Optimize Android%w%
-echo                             [1]            [2]              [3]                                        
+echo                           %r%Gaming%w%         %gold%Battery%w%   %g%Optimize Android%w%
+echo                             [1]            [2]            [3]                                        
+echo.
+echo                            %d%Auto%w%       %d%CheckSetting%w%       %d%Github%w%
+echo                             [4]            [5]            [6]
 echo.
 echo.
-echo                            %d%Auto%w%       %d%CheckSetting%w%         %d%Github%w%
-echo                             [4]            [5]              [6]
-echo.
-echo.
-echo.
-echo                           %b%Reboot%w%          %b%Exit%w%            %b%Shell%w%
-echo                             [7]            [8]              [9]
+echo                           %b%Reboot%w%          %b%Exit%w%           %b%Shell%w%
+echo                             [7]            [8]            [9]
 echo.
 set /p kb="                            Choose An Option >> "
 
@@ -128,6 +125,7 @@ exit
 :reboot
 adb reboot
 timeout /t 1 /nobreak > nul
+adb disconnect
 goto menu
 
 
@@ -201,6 +199,8 @@ echo Auto Sync: %auto_sync%
 for /f "tokens=*" %%i in ('adb shell settings get global master_sync_enabled') do set master_sync=%%i
 echo Master Sync Enabled : %master_sync%
 
+for /f "tokens=*" %%i in ('adb shell settings get global bluetooth_scan_always_enabled') do set auto_bluetooth=%%i
+echo Auto Bluetooth : %auto_bluetooth%
 
 echo Press Any Button To Go Back
 pause > nul
@@ -362,10 +362,15 @@ goto Optimize
 :killall
 @echo off
 cls
-title kill-all process
-adb shell am kill-all
+title kill process
+adb shell pm list package -3 > appsfile.txt
+for /f "tokens=2 delims=:" %%a in (appsfile.txt) do (
+echo Kill %%a
+adb shell am force-stop %%a
+)
 echo %c%Done%w%, Press Any Button To Go Back
 pause > nul
+del appsfile.txt
 goto Optimize
 
 :logc
@@ -510,7 +515,8 @@ echo                                     %gold%[%w%6%gold%]%w% Toggle Motion
 echo                                     %gold%[%w%7%gold%]%w% Toggle ZRAM
 echo                                     %gold%[%w%8%gold%]%w% Toggle Extreme Power Saver
 echo                                     %gold%[%w%9%gold%]%w% Toggle Wifi Recommendation
-echo                                     %gold%[%w%10%gold%]%w% Back
+echo                                     %gold%[%w%10%gold%]%w% Toggle Send Error 
+echo                                     %gold%[%w%11%gold%]%w% Back
 
 set /p set="Choose An Option >> "
 if %set% == 1 goto saverpower
@@ -522,7 +528,8 @@ if %set% == 6 goto motion
 if %set% == 7 goto zram
 if %set% == 8 goto extremepower
 if %set% == 9 goto wifircm
-if %set% == 10 goto menu
+if %set% == 10 goto senderror
+if %set% == 11 goto menu
 
 
 rem ----
@@ -625,6 +632,7 @@ cls
 title Auto Wifi : Off
 adb shell settings put global auto_wifi 0 default
 adb shell settings put global wifi_scan_always_enabled 0 default
+adb shell settings put global bluetooth_scan_always_enabled 0 default
 echo Press Any Button To Go Back
 pause > nul
 goto Battery
@@ -2270,6 +2278,7 @@ cls
 title Exetrem Power Saver : Off
 adb shell device_config delete activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 
 adb shell device_config delete activity_manager bg_auto_restrict_abusive_apps 
+adb shell cmd power set-mode 0
 echo Press Any Button To Go Back
 pause > nul
 goto Battery
@@ -2280,6 +2289,7 @@ cls
 title Extreme Power Saver : On
 adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1 default
 adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1 default
+adb shell cmd power set-mode 1
 echo Press Any Button To Go Back
 pause > nul
 goto Battery
@@ -2327,6 +2337,42 @@ pause > nul
 goto Battery
 
 
+:senderror
+cls
+title Toggle Send Error
+echo.
+echo.
+echo Toggle Your Send Error Here
+echo.
+echo [%r%1%w%] Off
+echo [%r%2%w%] On 
+echo [%r%3%w%] Back
+set /p toggle="Choose An Option >> "
+if %toggle% == 1 goto offerr
+if %toggle% == 2 goto onerr
+if %toggle% == 3 goto Battery
+
+:offerr
+cls
+title Send Error : Off
+adb shell settings put secure send_action_app_error 0 default
+adb shell settings put global send_action_app_error 0 default
+adb shell settings put global enable_diagnostic_data 0 default
+adb shell settings put system send_security_reports 0 default
+echo Done , Press Any Button To Go Back
+pause > nul
+goto Battery
+
+:onerr
+cls
+title Send Error : On
+adb shell settings put secure send_action_app_error 1 default
+adb shell settings put global send_action_app_error 1 default
+adb shell settings put global enable_diagnostic_data 1 default
+adb shell settings put system send_security_reports 1 default
+echo Done , Press Any BUtton To Go Back
+pause > nul
+goto Battery
 
 rem gaming
 :Gaming
@@ -2511,18 +2557,43 @@ title Setting Game-Overlay
 echo.
 echo.
 echo.
-echo [Low]     1
-echo [Medium]  2
-echo [High]    3
-echo [Back]    4
+echo %b%[Remove]%w%  1
+echo %b%[UltLow]%w%  2
+echo %b%[Low]%w%     3
+echo %b%[Medium]%w%  4
+echo %b%[High]  %w%  5
+echo %b%[Back]  %w%  6
 
 set /p kb="Choose An Option >> "
+if %kb% == 1 goto removeset
+if %kb% == 2 goto ultlow
+if %kb% == 3 goto low
+if %kb% == 4 goto med
+if %kb% == 5 goto high
+if %kb% == 6 goto Gaming
 
-if %kb% == 1 goto low
-if %kb% == 2 goto med
-if %kb% == 3 goto high
-if %kb% == 4 goto Gaming
+:removeset
+cls
+title Remove Settings
+set /p package="Put Your Package Name Here >> "
+adb shell device_config delete game_overlay %package% > nul
+echo %package% Settings Is Removed , Press Any Button To Go Back 
+pause > nul 
+goto Gaming
 
+
+:ultlow
+cls
+title Ultra Low Settings
+set /p package="Put Your Package Name Here >> "
+set /p fps="Put Your Fps Here >> "
+
+adb shell device_config put game_overlay %package% mode=2,vulkan=1,downscaleFactor=0.35,fps=%fps%:mode=3,vulkan=1,downscaleFactor=0.35,fps=%fps%
+cls
+adb shell device_config get game_overlay %package%
+echo Press Any Button To Go Back
+pause > nul
+goto Gaming
 
 :low
 @echo off
@@ -2548,6 +2619,7 @@ set /p fps="Put Your Fps Here >> "
 adb shell device_config put game_overlay %package% mode=2,vulkan=1,downscaleFactor=0.7,fps=%fps%:mode=3,vulkan=1,downscaleFactor=0.7,fps=%fps%
 cls
 adb shell device_config get game_overlay %package%
+echo Press Any Button To Go Back
 pause > nul
 goto Gaming
 
