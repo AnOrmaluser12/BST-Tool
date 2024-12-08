@@ -52,7 +52,6 @@ adb start-server
 goto menu
 :menu
 cls
-timeout /t 1 /nobreak > nul
 
 
 title Main Menu
@@ -237,32 +236,42 @@ if %kb% == 2 goto menu
 
 
 :setupautorun
+set c=0
 cls
-echo.
-echo.
-echo                     %d%" ____   _____ _______  __          __        _     _ "
-echo                     "|  _ \ / ____|__   __| \ \        / /       | |   | |"
-echo                     "| |_) | (___    | |     \ \  /\  / /__  _ __| | __| |"
-echo                     "|  _ < \___ \   | |      \ \/  \/ / _ \| '__| |/ _` |"%w%
-echo                     "| |_) |____) |  | |       \  /\  / (_) | |  | | (_| |"
-echo                     "|____/|_____/   |_|        \/  \/ \___/|_|  |_|\__,_|"
-echo.
-echo.
-echo.
+call :logo
 adb shell cmd package bg-dexopt-job
-echo bg-dexopt-job (done)
+cls
+call :logo
+set /a c+=1
+echo Done %b%%c%%w%/5
 timeout /t 1 /nobreak > nul
+call :logo
 adb shell dumpsys battery reset
-echo reset battery (done)
+cls
+call :logo
+set /a c+=1
+echo Done %b%%c%%w%/5
 timeout /t 1 /nobreak > nul
+call :logo
 adb shell sm fstrim
-echo fstrim (done)
+cls
+call :logo
+set /a c+=1
+echo Done %b%%c%%w%/5
 timeout /t 1 /nobreak > nul
+call :logo
 adb shell am kill-all
-echo kill all process (done)
+cls
+call :logo
+set /a c+=1
+echo Done %b%%c%%w%/5
 timeout /t 1 /nobreak > nul
+call :logo
 adb shell logcat -c
-echo clear logcat (done)
+cls
+call :logo
+set /a c+=1
+echo Done %b%%c%%w%/5
 timeout /t 1 /nobreak > nul
 echo Done , Press Any Button To Go Back
 pause > Nul
@@ -280,6 +289,7 @@ goto menu
 :Optimize
 cls
 title Optimize Android
+mode 100,35
 echo.
 echo.
 echo                     %d%" ____   _____ _______  __          __        _     _ "
@@ -404,22 +414,22 @@ goto Optimize
 
 
 :cache
-@echo off
+mode 45,12
 cls
 title Clear Cache
 echo [1] %c%64GB%w%
-echo [2] %c%256GB%w%
-echo [3] %c%512GB%w%
-echo [4] %c%1TB%w%
-echo [5] %c%128GB%w%
+echo [2] %c%128GB%w%
+echo [3] %c%256GB%w%
+echo [4] %c%512GB%w%
+echo [5] %c%1TB%w%
 echo [6] %c%Back%w%
 
 set /p k="Choose An Option >> "
 if %k% == 1 goto 64gb
-if %k% == 2 goto 256gb
-if %k% == 3 goto 512gb
-if %k% == 4 goto 1tb
-if %k% == 5 goto 128gb
+if %k% == 2 goto 128gb
+if %k% == 3 goto 256gb
+if %k% == 4 goto 512tb
+if %k% == 5 goto 1tb
 if %k% == 6 goto Optimize
 
 :64gb
@@ -2287,8 +2297,8 @@ goto Battery
 @echo off
 cls
 title Extreme Power Saver : On
-adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1 default
-adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1 default
+adb shell device_config put activity_manager bg_current_drain_auto_restrict_abusive_apps_enabled 1
+adb shell device_config put activity_manager bg_auto_restrict_abusive_apps 1
 adb shell cmd power set-mode 1
 echo Press Any Button To Go Back
 pause > nul
@@ -2709,3 +2719,19 @@ adb shell cmd game mode %btw% %package%
 echo Press Any Button To Go Back
 pause > nul 
 goto Gaming
+
+
+
+:logo
+echo.
+echo.
+echo                     %d%" ____   _____ _______  __          __        _     _ "
+echo                     "|  _ \ / ____|__   __| \ \        / /       | |   | |"
+echo                     "| |_) | (___    | |     \ \  /\  / /__  _ __| | __| |"
+echo                     "|  _ < \___ \   | |      \ \/  \/ / _ \| '__| |/ _` |"%w%
+echo                     "| |_) |____) |  | |       \  /\  / (_) | |  | | (_| |"
+echo                     "|____/|_____/   |_|        \/  \/ \___/|_|  |_|\__,_|"
+echo.
+echo.
+echo.
+@echo off
