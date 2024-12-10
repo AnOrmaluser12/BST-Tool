@@ -17,16 +17,16 @@ Basically , This Script Will Optimize Your Devices By ADB Command, Which Don't N
 
 But Don't Expect It Too Much Like From Old Smartphone Can Play Genshin Impact 💀
 
+I Make This Script With Plenty Of Settings That Allow You To Customize It Yourself As You Like
+
 ------------------------------------------------------------------
 
 
-**<!>Warnning<!> <!>Warnning<!> <!>Warnning<!> <!>Warnning<!>**
 
-While No Cats Have Been Harmed, Make Sure That **You** Don't Change Any Settings That You Don't Know What Will It Do
+**While No Cats Have Been Harmed, Make Sure That **You** Don't Change Any Settings That You Don't Know What Will It Do**
 
 You Have Been Warned!!
 
-**<!>Warnning<!> <!>Warnning<!> <!>Warnning<!> <!>Warnning<!>**
 
 ------------------------------------------------------------------
 
@@ -45,25 +45,3 @@ You Have Been Warned!!
 
 
 ------------------------------------------------------------------
-
-Here Is The Image :
-
-
-
-
-Normal Script :
-
-![image](https://github.com/user-attachments/assets/35e64920-fbbc-43a6-bec0-08617d35cc9e)
-
-
-
-Lite Script :
-![image](https://github.com/user-attachments/assets/f79503b3-ad20-47e4-b6f7-e25354533ade)
-
-
-
-
-
-
-
-
