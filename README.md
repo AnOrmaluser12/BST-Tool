@@ -4,51 +4,25 @@
 
 Hello , HungHoaBinh Here.
 
-Welcome To My Project , Im Doing This Script For Non-Root Users That Don't Want To Root But Still Want Tweak Your Phone To Get Better Experience With Minimal Risk
-, Then You Are In The Right Place!
+Welcome To My Project , A Small Project To Keep Low End , Mid Range Devices Have Better Experience Due Downgrades Overtime
 
 ------------------------------------------------------------------
 
-*Benefit*
+**What This Project Can Do?**
+**Can It Make My Phone Run Faster Or Gaming Experience Will Be Alot Better Than Before?**
 
+Well Yes, But Not Much
 
+Basically , This Script Will Optimize Your Devices By ADB Command, Which Don't Need To Root
 
-
-
-
-Here Is The List That What You Will Gain After Using My Script :
-
--Longer Battery Life
-
--Fps Boost (Maybe it not that much but why not ?)
-
--Bring A New Fresh To Your Device With A lot Of Settings To Change
-
--Give You A Best Experience With My Script
-
--Root and Non-Rooted Can Use This Script !
+But Don't Expect It Too Much Like From Old Smartphone Can Play Genshin Impact 💀
 
 ------------------------------------------------------------------
 
-**FAQ**
-
-Q: What Does This Script Do And What Will Affect My Device ?
-
-A: This script will optimize your device based on the settings you choose, and some settings will slow down your notifications so be aware of it
-
-
-Q: Will There A Setting That Will Damage My Device If I Choose Wrong Setting?
-
-A: Nope , I just tested all of it but be careful , only change setting if you know what are you doing
-
--
-
-
-------------------------------------------------------------------
 
 **<!>Warnning<!> <!>Warnning<!> <!>Warnning<!> <!>Warnning<!>**
 
-This Script Have Few Safe Settings And Critical Settings That May Damage Your Device If You Don't Know What Are You Doing
+While No Cats Have Been Harmed, Make Sure That **You** Don't Change Any Settings That You Don't Know What Will It Do
 
 You Have Been Warned!!
 
