@@ -1,21 +1,23 @@
-# Security Policy
+**Security Policy for BST-Tool**
 
-## Supported Versions
+1. Overview
+BST-Tool is developed and maintained by a single individual. This document outlines the security practices and guidelines for using and contributing to the project.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+2. Data Collection and Privacy
+BST-Tool does not collect any personal data. It does not track, store, or transmit any user information.
+*A small project with nothing to hide from you.*
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
 
-## Reporting a Vulnerability
+3. Reporting Vulnerabilities
+If you discover a security vulnerability, please report it directly to me by creating an issue on the GitHub Issues page. I will prioritize addressing vulnerabilities and update the tool as needed.
 
-Use this section to tell people how to report a vulnerability.
+4. Best Practices for Users
+To ensure the security of your device:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Only Download From Official Source: Do not download BST-Tool from any source other than the official repository.
+Understand the Script: Avoid running any commands or settings you don't fully understand. Misuse could affect battery life, performance, or stability.
+Regular Updates: Keep your version of BST-Tool up to date to benefit from any security improvements, new settings or patches.
+
+5. Disclaimer
+While I strive to provide a secure tool, BST-Tool is offered "as-is." I am not responsible for any damages or issues that may arise from using this tool. By using BST-Tool, you accept the risks associated with its use.
+
